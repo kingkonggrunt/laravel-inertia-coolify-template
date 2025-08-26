@@ -8,12 +8,12 @@ USER root
 # Install Node.js, libicu-dev(filamentphp) and php extensions
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get update \
-    && apt-get install -y nodejs libicu-dev gosu \
+    && apt-get install -y nodejs libicu-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-install intl
 
-
+RUN mkdir -p /var/www/html && rm -rf /var/www/html/*
 COPY --chown=www-data:www-data . /var/www/html
 
 
